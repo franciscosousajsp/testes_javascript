@@ -1,0 +1,75 @@
+class Animal{
+
+    // Atributos privados (encapsulamento)
+    #estadoSaude;
+    #nivelEnergia;
+
+    // Construtor
+    constructor(nome, idade, especie) {
+        // Atributos públicos
+        this.nome = nome;
+        this.idade = idade;
+        this.especie = especie;
+        
+        // Inicialização dos atributos privados
+        this.#estadoSaude = 'saudável';
+        this.#nivelEnergia = 100;
+    }
+
+
+    // definição dos métodos
+
+    // Método público
+    obterInformacoes() {
+        return `Nome: ${this.nome}, Idade: ${this.idade}, Espécie: ${this.especie}`;
+    }
+
+    // Método público para polimorfismo
+    emitirSom() {
+        return 'Animal faz um som genérico.';
+    }
+
+    // Método privado
+    #calcularNecessidadesNutricionais() {
+        return this.idade * 10; 
+    }
+
+    // Método protegido (simulado com convenção de nome)
+    _atualizarEstado() {
+        if (this.#nivelEnergia < 20) {
+            this.#estadoSaude = 'cansado';
+        }
+    }
+
+}
+
+// Classe derivada (subclasse)
+class Cachorro extends Animal {
+    constructor(nome, idade) {
+        super(nome, idade, 'Cachorro'); // Chama o construtor da superclasse
+    }
+
+    // Sobrescrita do método (polimorfismo)
+    emitirSom() {
+        return 'O cachorro late: Au au!';
+    }
+}
+
+// Criando instâncias
+const cachorro = new Animal('Rex', 5, 'Cachorro');
+
+console.log(cachorro.obterInformacoes());
+//Saída:  Nome: Rex, Idade: 5, Espécie: Cachorro
+
+
+// Criando uma instância
+// Definindo valores separadamente
+const gato = new Animal();
+gato.nome = "Garfield";
+gato.idade = 2;
+gato.especie = "Gato"; 
+
+console.log(gato.nome); // Saída: Garfield
+console.log(gato.obterInformacoes());
+//Saída:  Nome: Garfield, Idade: 2, Espécie: Gato
+
